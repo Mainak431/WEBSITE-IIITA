@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        IIIT ALLAHABAD
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/jpg" href="{{logo.logo.url}}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+	body {font-family: Arial, Helvetica, sans-serif;}
+
+	#myImg {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	#myImg:hover {opacity: 0.7;}
+
+	/* The Modal (background) */
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 100px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	}
+
+	/* Modal Content (image) */
+	.modal-content {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 1000px;
+	}
+
+	/* Caption of Modal Image */
+	#caption {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		text-align: center;
+		color: #ccc;
+		padding: 10px 0;
+		height: 150px;
+	}
+
+	/* Add Animation */
+	.modal-content, #caption {    
+		-webkit-animation-name: zoom;
+		-webkit-animation-duration: 0.6s;
+		animation-name: zoom;
+		animation-duration: 0.6s;
+	}
+
+	@-webkit-keyframes zoom {
+		from {-webkit-transform:scale(0)} 
+		to {-webkit-transform:scale(1)}
+	}
+
+	@keyframes zoom {
+		from {transform:scale(0)} 
+		to {transform:scale(1)}
+	}
+
+	/* The Close Button */
+	.close {
+		position: absolute;
+		top: 120px;
+		right: 405px;
+		color: #f1f1f1;
+		font-size: 40px;
+		font-weight: bold;
+		transition: 0.3s;
+	}
+
+	.close:hover,
+	.close:focus {
+		color: #bbb;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	/* 100% Image Width on Smaller Screens */
+	@media only screen and (max-width: 700px){
+		.modal-content {
+			width: 100%;
+		}
+	}
+	.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding:10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px;
+    cursor: pointer;
+	}
+
+	.button2 {background-color: #008CBA;} /* Blue */
+	.button3 {background-color: #f44336;} /* Red */ 
+	.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+	.button5 {background-color: #555555; color:white;}
+	.button6 {background-color: #fff; color:#000000;}/* Black */
+   body { background: white !important; }/* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+#overlay {
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+
+}
+#overlay div {
+     width:500px;
+     margin: 100px auto;
+     background-color: #808000;
+     border:10px solid #FFFF00;
+     padding:15px;
+     text-align:center;
+}
+body {
+     height:100%;
+     margin:0;
+     padding:0;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+.dropdown-submenu:hover > a:after {
+  border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left > .dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+}
+div1{
+    height: 320px;
+    width: 100%;
+    background-color: powderblue;
+    overflow:auto;
+}
+.slide-pane {
+    background:#344A5E;
+    color:#FFF;
+}
+.text-pane {
+    background:#344A5E;
+    color:#FFF;
+    padding:20px 0 0 20px !important;
+}
+
+h1 {
+    font-size:22px;
+    color: #1F321F;
+    font-weight: bold
+}
+h2 {
+    font-size:30px;
+    color: #B5B037;
+    font-weight: bold
+}
+h5 {
+    font-size:10px;
+    color: #8A2BE2;
+    font-weight: bold
+}
+.rounded {
+  border-radius: 10px;
+}
+.item {
+            background: #333;
+            text-align: center;
+            height: 300px;
+        }
+</style>
+<script type="text/javascript">
+function goto(a){
+	alert(a);
+}
+
+function overlay() {
+	el = document.getElementById("overlay");
+	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+ $(document).ready( function() {
+        $('#deletesuccess').delay(10000).fadeOut();
+      });
+
+$(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+</script>
+
+<body>
+<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">IIITA</a>
+             <img src="{{logo.logo.url}}" class="img-responsive header-img"
+                         width="48" height="50" align="left">
+            {%if user.is_authenticated %}
+                <a href="/upload_logo/" ><i class="fa fa-camera"></i></a>
+            {%endif%}
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            {%if not user.is_authenticated %}
+                <a href="/contact_us/" class="button button5 btn btn-primary">Write to Us <i class="fa fa-envelope-o"></i></a>
+            {%else%}
+                <a href="/all_messages/" class="button buttton5 btn btn-primary"><i class="fa fa-envelope-open"></i><span class="badge" >{{count_messages}}</span></a>
+            {%endif%}
+            <ul class="nav navbar-nav">
+
+                <div class="dropdown">
+                    <button class="button5 button btn btn-primary dropdown-toggle" style="background-color:Black;"
+                            type="button" data-toggle="dropdown">Departments <i class="fa fa-graduation-cap" style="font-size:24px"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for d in dept%}
+                        <li class="dropdown-submenu">
+                            <a class="test" href="#" tabindex="-1" >{{d.Dept_ID}} <span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="https://{{d.Dept_ID}}.iiita.ac.in" >
+                                            {{d.Dept_ID}} Department
+                                        </a>
+                                    </li>
+                                    {%if user.is_authenticated %}
+                                    <li>
+                                        <a tabindex="-1" href="/update_department/{{d.id}}/">
+                                            Update {{d.Dept_ID}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="/delete_department/{{d.id}}/">
+                                            Delete {{d.Dept_ID}}
+                                        </a>
+                                    </li>
+                                    {%endif%}
+                                </ul>
+                        </li>
+                        {%endfor%}
+                        {%if user.is_authenticated %}
+                        <li><a href="/add_department/" onclick='overlay()'>ADD DEPARTMENT</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </ul>
+            <ul class="nav navbar-nav">
+
+                <div class="dropdown">
+                    <button class="button5 button btn btn-primary dropdown-toggle" style="background-color:Black;"
+                            type="button" data-toggle="dropdown">Contacts <i class="fa fa-address-book" style="font-size:24px;"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/all_contacts/" onclick='overlay()'>ALL CONTACTS</a></li>
+                        {% for c in contacts%}
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">{{c.Name}} <span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="/contacts/{{c.id}}/" >
+                                            {{c.Name}}'s Contact
+                                        </a>
+                                    </li>
+                                    {%if user.is_authenticated %}
+                                    <li>
+                                        <a tabindex="-1" href="/update_contact/{{c.id}}/">
+                                            Update {{c.Name}}'s Contact
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="/delete_contact/{{c.id}}/">
+                                            Delete {{c.Name}}'s Contact
+                                        </a>
+                                    </li>
+                                    {%endif%}
+                                </ul>
+                        </li>
+                        {%endfor%}
+                        {%if user.is_authenticated %}
+                        <li><a href="/add_contact/" onclick='overlay()'>ADD CONTACT</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </ul>
+            {%for i in nav_bar %}
+            <ul class="nav navbar-nav">
+
+                <div class="dropdown">
+                    <button class="button5 button btn btn-primary dropdown-toggle" style="background-color:Black;"
+                            type="button" data-toggle="dropdown">{{i.name}} <i class="fa fa-podcast" style="font-size:24px;"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for c in nav%}
+                        {% if c.nav_bar == i %}
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">{{c.name}} <span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="{{c.links}}" >
+                                            {{c.name}}'s Website
+                                        </a>
+                                    </li>
+                                    {%if user.is_authenticated %}
+                                    <li>
+                                        <a tabindex="-1" href="/update_nav/{{c.id}}/">
+                                            Update {{c.name}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="/delete_nav/{{c.id}}/">
+                                            Delete {{c.name}}
+                                        </a>
+                                    </li>
+                                    {%endif%}
+                                </ul>
+                        </li>
+                        {%endif%}
+                        {%endfor%}
+                        {%if user.is_authenticated %}
+                        <li><a href="/add_nav/{{i.id}}" onclick='overlay()'>ADD LINKS</a></li>
+                        <li><a href="/delete_navigation/{{i.id}}" onclick='overlay()'>DELETE THIS BAR</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </ul>
+            {%endfor%}
+            {%if user.is_authenticated %}
+            <a href="/add_navigation/" class="button button5 btn btn-primary"><i class="fa fa-plus" style="font-size:24px;"></i></a>
+            {%endif%}
+        </div>
+
+    </div>
+    </div>
+
+</nav>
+<p></p>
+<p>
+
+</p>
+        <input type="text" visible = " invisible" name="myInput" autofocus />
+
+<div class="container-fluid">
+    <div class="jumbotron" >
+
+        <!---div class="col-sm-12 col-md-4 col-xs-12 col-lg-4">
+
+        </div--->
+
+        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+            <div id="overlay">
+                <div class="{{ dept_visible }}" >
+                    <p>{%if booli %}
+                            <form action="" method="post">
+                                <h2>{{text}} {{object.Dept_ID}}</h2>
+                                <a href="/" class="close button4">&times;</a>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="button button4" >{{button}} {{object.Dept_ID}}</button>
+                            </form>
+                        {%elif boolj%}
+
+                            <a href="/" class="close button4">&times;</a>
+                            {% for article in object_list %}
+
+                                    <p>Message</p>
+                                    <p>Email ID : {{ article.email}} </p>
+                                    <p>Phone Number: {{article.phone_number}}</p>
+                                    <p>Message: {{article.Message}}</p>
+                                    <p><a href="/add_reply/{{article.id}}" style="color:black"><i class="fa fa-mail-reply-all" style="font-size:24px"></i></a></p>
+                                 _________________________________________________
+                                {% empty %}
+                                    <p>Nothing yet.</p>
+                                {% endfor %}
+                        {%elif boolc%}
+                            <a href="/" class="close button4">&times;</a>
+                            {% for article in object_list %}
+                                    <p>Name: {{article.Name}} </p>
+                                    <p>Designation: {{article.designation}} </p>
+                                    <p>Email ID : {{ article.email_id}} </p>
+                                    <p>Phone_Number: {{article.phone_number}}</p>
+                                 _________________________________________________
+                                {% empty %}
+                                    <p>Nothing yet.</p>
+                                {%endfor%}
+                        {%elif boolimg %}
+                            <form action="" enctype="multipart/form-data" method="post">
+                                <h2>{{text}} {{object.Dept_ID}}</h2>
+                                <a href="/" class="close button4">&times;</a>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="button button4" >{{button}} {{object.Dept_ID}}</button>
+                            </form>
+                        {%elif boolshow%}
+                            <a href="/" class="close button4">&times;</a>
+                            {% for article in object_list %}
+                                    <p>{{article.title}} </p>
+                                    <img  src="{{article.photo.url}}" alt="{{i.description}}" style="width:100%;">
+                                    <p>{{article.description}}</p>
+                                {% empty %}
+                                    <p>Nothing yet.</p>
+                                {%endfor%}
+                        {%endif%}
+                    </p>
+                 </div>
+            </div>
+
+        </div>
+        {% if messages %}
+        <div class ="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+
+        </div>
+        <div class ="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+        </div>
+        <div class ="col-sm-12 col-xs-12 col-md-2 col-lg-2">
+        </div>
+
+        <div class="col-sm-12 col-xs-12 col-md-2 col-lg-2" id =deletesuccess style="background:yellow;">
+            <ul class="messages">
+                {% for message in messages %}
+                <h5 {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}
+                </h5>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <h2 style="color:#130d6a;" align="center">Indian Institute Of Information Technology</h2>
+        <h2 style="color:#130d6a;" align="center">Allahabad</h2>
+        <p align="center"> An Institute Of National Importance </p>
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 ">
+        <marquee behavior="alternate" direction="up" width="100%">
+            <!---scrollamount controls the spped--->
+	        <marquee direction="right" behavior="alternate" scrollamount="1" onmousedown="this.stop();" onmouseup="this.start();">
+                {%if user.is_authenticated %}
+                    <a href="/add_tobar/" style="font-size:15px" class="button button5 btn btn-primary">ADD <i class="fa fa-plus"></i></a>
+                {%endif%}
+                {% for document in movebar %}
+                        &nbsp;&nbsp;
+                        <a href="{{ document.link }}">| {{ document.name }}</a>
+                        {% if user.is_authenticated %}
+                        <a href="/update_bar/{{document.id}}/"><i class="fa fa-plus"></i></a>
+                        <a href="/delete_bar/{{document.id}}/"><i class="fa fa-times"></i></a>
+                        &nbsp;&nbsp;
+                    {%endif%}
+
+                {% endfor %}
+            </marquee>
+        </marquee>
+    </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="rounded col-sm-12 col-xs-12 col-md-6 col-lg-6" style="background:#B74646;">
+        <h2 style="color:black"><i class="fa fa-video-camera" style="font-size:36px"></i> VIDEO GALLERY</h2>
+        <iframe width=98% height="310" src="{{video.link}}" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+        {%if user.is_authenticated %}
+                <a style ="color:black; " href="/add_video/" ><i class="fa fa-film"></i></a>
+            {%endif%}
+        <p><a href="/all_videos/" target="_blank" class="button button5"
+              style="background-color:BLack;">COMPLETE GALLERY</a></p>
+    </div>
+    <div class="rounded col-sm-12 col-xs-12 col-md-6 col-lg-6" style="background:#2C7E93;">
+        <h2 style="color:black"><i class="fa fa-camera-retro" style="font-size:36px"></i> IMAGE GALLERY</h2>
+        <p>
+        </p>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!---Indicators values should also iterate in django--->
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                {%for i in image%}
+                <li data-target="#myCarousel" data-slide-to="{{i.id}}"></li>
+                {%endfor%}
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" style=" width:650; height: 315px !important;">
+                <!--replicate leaving the first one while using django. first one is the default-->
+                <div class="item active">
+                    <img src="{% static "i2.jpg" %}" alt="IIITA" style="width:100%;">
+                </div>
+                {%for i in image%}
+                <div class="item">
+                    <a href="/show_photo/{{i.id}}/">
+                    <img id="myImg" src="{{i.photo.url}}" alt="{{i.description}}" style="width:100%;">
+                    <div class="carousel-caption">
+                        <h3>{{i.title}}</h3>
+                        <p>{{i.description}}</p>
+                    </div>
+                    </a>
+                </div>
+            {%endfor%}
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        {%if user.is_authenticated %}
+                <a href="/upload_photo/" style="color:black;"><i class="fa fa-camera"></i></a>
+            {%endif%}
+        <p><a href="/all_images/" target="_blank" class="button button5"
+              style="background-color:BLack;">COMPLETE GALLERY</a></p>
+    </div>
+    <p></p>
+</div>
+</div>
+    &nbsp;
+    &nbsp;
+<div class="container-fluid">
+<div class="row">
+    <div class="rounded col-sm-12 col-xs-12 col-md-12 col-lg-12" style="background:#C0B7B7">
+    <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+        <h1><i class="fa fa-download" style="font-size:36px"></i> DOWNLOADS {%if user.is_authenticated %}
+            <a href="/add_file/" style="font-size:15px" class="button button5 btn btn-primary"><i class="fa fa-upload"></i></a>
+        {%endif%}
+        </h1>
+        {% if Downloads %}
+        <ul>
+        {% for document in Downloads %}
+            <li class="rounded" style="background:white; width:50%"><a href="{{ document.file.url }}"><i class="fa fa-download" style="font-size:15px"></i> {{ document.name }}</a>
+            {% if user.is_authenticated %}
+            <a href="/update_file/{{document.id}}/"><i class="fa fa-upload"></i></a>
+            <a href="/delete_file/{{document.id}}/"><i class="fa fa-times"></i></a>
+            {%endif%}
+            </li>
+            &nbsp;
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+        <p></p>
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+         <h1><i class="fa fa-bullhorn" style="font-size:36px"></i> ANNOUNCEMENTS {%if user.is_authenticated %}
+            <a href="/add_announ/" style="font-size:15px" class="button button5 btn btn-primary"><i class="fa fa-plus"></i></a>
+        {%endif%}
+        </h1>
+        {% if Announ %}
+        <ul>
+        {% for document in Announ %}
+            <li class="rounded" style="background:white; width:50%"><a href="{{ document.link }}">&nbsp;{{ document.heading }}</a>
+            {% if user.is_authenticated %}
+            <a href="/update_announ/{{document.id}}/"><i class="fa fa-plus"></i></a>
+            <a href="/deactivate_announ/{{document.id}}/"><i class="fa fa-times"></i></a>
+            {%endif%}
+            </li>
+            &nbsp;
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Announcements.</p>
+    {% endif %}
+        <p></p>
+    </div>
+    <div class="clearfix visible-sm-block"></div>
+    <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+        <h1><i class="fa fa-circle-o-notch" style="font-size:36px"></i> WEB PORTALS {%if user.is_authenticated %}
+            <a href="/add_portal/" style="font-size:15px" class="button button5 btn btn-primary"><i class="fa fa-plus"></i></a>
+        {%endif%}
+        </h1>
+        {% if portal %}
+        <ul>
+        {% for document in portal %}
+            <li class="rounded" style="background:white; width:50%"><a href="{{ document.link }}"> &nbsp;{{ document.name }}</a>
+            {% if user.is_authenticated %}
+            <a href="/update_portal/{{document.id}}/"><i class="fa fa-plus"></i></a>
+            <a href="/delete_portal/{{document.id}}/"><i class="fa fa-times"></i></a>
+            {%endif%}
+            </li>
+            &nbsp;
+        {% endfor %}
+        </ul>
+        {% else %}
+            <p>No Announcements.</p>
+        {% endif %}
+            <p></p>
+    </div>
+</div>
+    &nbsp;
+    &nbsp;
+<div class="rounded col-sm-12 col-xs-12 col-md-12 col-lg-12">
+    <div class="clearfix visible-md-block"></div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12" >
+        <h1><i class="fa fa-globe" style="font-size:36px"></i> EVENTS {%if user.is_authenticated %}
+            <a href="/add_event/" style="font-size:15px" class="button button5 btn btn-primary"><i class="fa fa-plus"></i></a>
+        {%endif%}
+        </h1>
+        <div class="item">
+            <div id="DemoCarousel" class="carousel slide" data-interval="4000" data-ride="carousel">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    {%for i in event%}
+                        <li data-target="#myCarousel" data-slide-to="{{i.id}}"></li>
+                    {%endfor%}
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <h2>Events</h2>
+                        <img style="width:100%;height:180px;" src="{% static "Event.png" %}" alt="Events" >
+                        <div class="carousel-caption">
+                            <h2 style="color:black"></h2>
+                        </div>
+                        <h2>Events @ IIITA</h2>
+                    </div>
+                    {%for i in event%}
+                    <div class="item">
+                        <h2>{{i.title}} </h2>
+                        {% if user.is_authenticated %}
+                        <h3>
+                            <a href="/update_event/{{i.id}}/"><i class="fa fa-plus"></i></a>
+                            <a href="/deactivate_event/{{i.id}}/"><i class="fa fa-times"></i></a>
+                        </h3>
+                        {%endif%}
+                        {%if i.link %}
+                        <a href = "{{i.link}}">
+                        {%else%}
+                        <a href="#">
+                        {%endif%}
+                            {%if i.Image %}
+                        <img style="width:100%;height:180px;" src="{{i.Image.url}}" alt="Events" >
+                            {%else%}
+                        <img style="width:100%;height:180px;" src="{% static "Event.png" %}" alt="Events" >
+                            {%endif%}
+
+                        </a>
+                        <div class="carousel-caption">
+
+                        </div>
+                        <p style="color:yellow;">{{i.description}}</p>
+                    </div>
+                    {%endfor%}
+
+                </div>
+                <a class="carousel-control left" href="#DemoCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="carousel-control right" href="#DemoCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix visible-sm-block"></div>
+
+    <div class="col-sm-12 col-md-3 col-xs-12 col-lg-3">
+        <h1><i class="fa fa-child" style="font-size:36px"></i> IIITA WALKTHROUGH</h1>
+        <div1 class="thumbnail">
+            <a href="https://goo.gl/R1y98j" height="50">
+                <img style="width:100%;height:310px;" src="{% static "iiita2.jpg" %}" alt="Walkthrough" >
+
+            </a>
+        </div1>
+    </div>
+        <div class="col-sm-12 col-md-3 col-xs-12 col-lg-3" >
+            <div class="row">
+                <div class = "col-sm-12 col-xs-12 col-md-12 col-lg-12">
+                        <h1> <i class="fa fa-cogs" style="font-size:36px"></i> ADMIN LOGIN </h1>
+                        {%if not user.is_authenticated %}
+                        {%if not login %}
+                        {% block content %}
+                             <h2>Login</h2>
+                             <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="button">Login</button>
+                            </form>
+                        {% endblock %}
+                        {%endif%}
+                    {%else%}
+                        <h1>Logged In As: {{request.user.username}}</h1>
+                        <h2> LOGOUT </h2>
+                        <a href="/logout/" class="button button3 btn btn-primary" role="button">LOGOUT</a>
+                    {%endif%}
+                </div>
+                <div class = "col-sm-12 col-xs-12 col-md-12 col-lg-12 rounded" style="background:#C0B7B7">
+                    <h1>Last Refreshed</h1>
+                    <h1>DATE : {{date | date:"SHORT_DATE_FORMAT"}}</h1>
+                    <h1>TIME : {{time}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+&nbsp;
+    &nbsp;
+<div class="container-fluid">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+        {%if user.is_authenticated %}
+        <h1><i class="fa fa-object-group" style="font-size:36px"></i> ADD SECTION
+            <a href="/add_section/" style="font-size:15px" class="button button5 btn btn-primary"><i class="fa fa-plus"></i></a>
+        </h1>
+        {%endif%}
+        <div class="row">
+
+        {%for i in section %}
+            <div class=" rounded col-sm-12 col-md-{{i.section_size}} col-lg-{{i.section_size}} col-xs-12" style="background:#C0B7B7;height:120%">
+                <h1><i class="fa fa-bullseye" style="font-size:36px"></i> {{i.title}}{%if user.is_authenticated %}
+                    <a href="/update_section/{{i.id}}/"><i class="fa fa-plus"></i></a>
+                    <a href="/delete_section/{{i.id}}/"><i class="fa fa-times"></i></a>
+                </h1>
+                <p class="rounded" style="background:white;width:50%" ><i class="fa fa-globe"></i> Add Link
+                    <a href="/add_seclink/{{i.id}}" style="font-size:15px" class=""><i class="fa fa-plus"></i></a>
+                </p>
+                &nbsp;
+                <p class="rounded" style="background:white;width:50%" ><i class="fa fa-photo"></i> Add Image
+                    <a href="/add_secimage/{{i.id}}" style="font-size:15px" class=""><i class="fa fa-plus" ></i></a>
+                </p>
+            {%endif%}
+                <p>
+                &nbsp;
+                &nbsp;
+                </p>
+            {%for c in sec_links%}
+                {%if c.section == i%}
+                    <li ><a class="rounded" style="background:white;font-size:15px;" href="{{c.link}}/"> &nbsp;{{c.name}}&nbsp;</a>{%if user.is_authenticated %}
+                    <a href="/update_seclink/{{c.id}}" style="font-size:15px" class=""><i class="fa fa-plus"></i></a>
+                    <a href="/delete_seclink/{{c.id}}" style="font-size:15px" class=""><i class="fa fa-times" ></i></a>
+                    {%endif%}
+                </li>
+                &nbsp;
+                {%endif%}
+            {%endfor%}
+                <p>
+                &nbsp;
+                &nbsp;
+                </p>
+                {% if i.has_image %}
+                <div class="item">
+                    <div id="DemoCarousel{{i.id}}" class="carousel slide" data-interval="4000" data-ride="carousel" >
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            {%for d in sec_images%}
+                            {%if d.section == i %}
+                                <li data-target="#myCarousel" data-slide-to="{{i.id}}"></li>
+                            {%endif%}
+                            {%endfor%}
+                        </ol>
+                        <div class="carousel-inner" style="height:300px">
+                            <div class="item active">
+                                <h2>{{i.title}} </h2>
+                                {%if i.base_img %}
+                                <img style="width:100%;height:150px;" src="{{i.base_img.url}}"  >
+                                {%else%}
+                                <img style="width:100%;height:150px;" src="{% static "copyright.jpg" %}"  >
+                                {%endif%}
+                                <div class="carousel-caption">
+                                    <h2 style="color:black"></h2>
+                                </div>
+                                <h2>{{i.title}} @ IIITA</h2>
+                            </div>
+                            {%for d in sec_images%}
+                            {%if d.section == i %}
+                            <div class="item">
+                                <h2>{{d.title}} </h2>
+                                {% if user.is_authenticated %}
+                                <h3>
+                                    <a href="/update_secimg/{{d.id}}/"><i class="fa fa-plus"></i></a>
+                                    <a href="/delete_secimg/{{d.id}}/"><i class="fa fa-times"></i></a>
+                                </h3>
+                                {%endif%}
+                                <a href = "{{d.image.url}}">
+                                    {%if d.image %}
+                                <img style="width:100%;height:150px;" src="{{d.image.url}}" alt="Section" >
+                                    {%else%}
+                                <img style="width:100%;height:150px;" src="{% static "copyright.jpg" %}" alt="Events" >
+                                    {%endif%}
+
+                                </a>
+                                <div class="carousel-caption">
+
+                                </div>
+                                <p style="color:yellow;">{{d.description}}</p>
+                            </div>
+                            {%endif%}
+                            {%endfor%}
+
+                        </div>
+                        <a class="carousel-control left" href="#DemoCarousel{{i.id}}" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="carousel-control right" href="#DemoCarousel{{i.id}}" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+    <p>
+        &nbsp;
+        &nbsp;
+    </p>
+<div class="container-fluid">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                <h1><i class="fa fa-map-marker" style="font-size:36px"></i> REACH IIITA</h1>
+                <iframe src="https://goo.gl/wFNgQS" width="600" height="250" frameborder="0" style="border:0"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                <h1><i class="fa fa-institution" style="font-size:36px"></i> ADDRESS</h1>
+                <p>
+                </p>
+                <p>
+                </p>
+                <h3>Indian Institute of Information Technology Allahabad</h3>
+                <h3>Devghat, Jhalwa, Allahabad-211015, U. P. INDIA</h3>
+                <h3>Phone: 91-532-2922000, Fax: 91-532-2922125</h3>
+                <h3>Email: contact@iiita.ac.in </h3>
+                <h3><i class="fa fa-group" style="font-size:36px"></i> Social</h3>
+                <p>
+                    <a href="https://www.facebook.com/IIIT-Allahabad-144574835631387/"><i style="font-size:24px" class="fa fa-facebook-f"></i></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="https://twitter.com/aaa_iiita?lang=en"><i style="font-size:24px" class="fa fa-twitter-square"></i></a>
+                     &nbsp;&nbsp;&nbsp;
+                    <a href="https://www.youtube.com/channel/UCSKd_5A0v36U5Bt0y-SDJWg"><i style="font-size:24px; color:red;" class="fa fa-youtube"></i></a>
+                     &nbsp;&nbsp;&nbsp;
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<hr>
+<div class="row">
+    <div class="col-sm-12 rounded" style="background:#C707">
+        <footer>
+            <p> &ensp; &copy; Copyright 2018 IIIT ALLAHABAD</p>
+        </footer>
+    </div>
+</div>
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+</script>
+</body>
+</html>                            

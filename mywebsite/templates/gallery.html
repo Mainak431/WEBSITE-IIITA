@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        IIIT ALLAHABAD
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/jpg" href="{{logo.logo.url}}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+	body {font-family: Arial, Helvetica, sans-serif;}
+
+	#myImg {
+		border-radius: 5px;
+		cursor: pointer;
+		transition: 0.3s;
+	}
+
+	#myImg:hover {opacity: 0.7;}
+
+	/* The Modal (background) */
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 100px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	}
+
+	/* Modal Content (image) */
+	.modal-content {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 1000px;
+	}
+
+	/* Caption of Modal Image */
+	#caption {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		text-align: center;
+		color: #ccc;
+		padding: 10px 0;
+		height: 150px;
+	}
+
+	/* Add Animation */
+	.modal-content, #caption {
+		-webkit-animation-name: zoom;
+		-webkit-animation-duration: 0.6s;
+		animation-name: zoom;
+		animation-duration: 0.6s;
+	}
+
+	@-webkit-keyframes zoom {
+		from {-webkit-transform:scale(0)}
+		to {-webkit-transform:scale(1)}
+	}
+
+	@keyframes zoom {
+		from {transform:scale(0)}
+		to {transform:scale(1)}
+	}
+
+	/* The Close Button */
+	.close {
+		position: absolute;
+		top: 120px;
+		right: 405px;
+		color: #f1f1f1;
+		font-size: 40px;
+		font-weight: bold;
+		transition: 0.3s;
+	}
+
+	.close:hover,
+	.close:focus {
+		color: #bbb;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	/* 100% Image Width on Smaller Screens */
+	@media only screen and (max-width: 700px){
+		.modal-content {
+			width: 100%;
+		}
+	}
+	.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding:10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px;
+    cursor: pointer;
+	}
+
+	.button2 {background-color: #008CBA;} /* Blue */
+	.button3 {background-color: #f44336;} /* Red */
+	.button4 {background-color: #e7e7e7; color: black;} /* Gray */
+	.button5 {background-color: #555555; color:white;}
+	.button6 {background-color: #fff; color:#000000;}/* Black */
+   body { background: white !important; }/* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+#overlay {
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+
+}
+
+#overlay div {
+     width:500px;
+     margin: 100px auto;
+     background-color: #808000;
+     border:10px solid #FFFF00;
+     padding:15px;
+     text-align:center;
+}
+body {
+     height:100%;
+     margin:0;
+     padding:0;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+div1{
+    height: 320px;
+    width: 100%;
+    background-color: powderblue;
+    overflow:auto;
+}
+.slide-pane {
+    background:#344A5E;
+    color:#FFF;
+}
+.text-pane {
+    background:#344A5E;
+    color:#FFF;
+    padding:20px 0 0 20px !important;
+}
+h1 {
+    font-size:22px;
+    color: #1F321F;
+    font-weight: bold
+}
+h2 {
+    font-size:30px;
+    color: #31302D;
+    font-weight: bold
+}
+.rounded {
+  border-radius: 10px;
+}
+.item {
+            background: #333;
+            text-align: center;
+            height: 300px;
+        }
+</style>
+<script type="text/javascript">
+function goto(a){
+	alert(a);
+}
+function overlay() {
+	el = document.getElementById("overlay");
+	el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+$(document).ready( function() {
+        $('#deletesuccess').delay(10000).fadeOut();
+      });
+
+$(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+</script>
+
+<body>
+<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">IIITA</a>
+             <img src="{{logo.logo.url}}" class="img-responsive header-img"
+                         width="48" height="50" align="left">
+            {%if user.is_authenticated %}
+                <a href="/upload_logo/" ><i class="fa fa-camera"></i></a>
+            {%endif%}
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            {%if not user.is_authenticated %}
+                <a href="/contact_us/" class="button button5 btn btn-primary">Write to Us <i class="fa fa-envelope-o"></i></a>
+            {%else%}
+                <a href="/all_messages/" class="button buttton5 btn btn-primary"><i class="fa fa-envelope-open"></i><span class="badge" >{{count_messages}}</span></a>
+            {%endif%}
+            <ul class="nav navbar-nav">
+
+                <div class="dropdown">
+                    <button class="button5 button btn btn-primary dropdown-toggle" style="background-color:Black;"
+                            type="button" data-toggle="dropdown">Departments <i class="fa fa-graduation-cap" style="font-size:24px"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for d in dept%}
+                        <li class="dropdown-submenu">
+                            <a class="test" href="#" tabindex="-1" >{{d.Dept_ID}} <span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="/department/{{d.id}}/" >
+                                            {{d.Dept_ID}} Department
+                                        </a>
+                                    </li>
+                                    {%if user.is_authenticated %}
+                                    <li>
+                                        <a tabindex="-1" href="/update_department/{{d.id}}/">
+                                            Update {{d.Dept_ID}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="/delete_department/{{d.id}}/">
+                                            Delete {{d.Dept_ID}}
+                                        </a>
+                                    </li>
+                                    {%endif%}
+                                </ul>
+                        </li>
+                        {%endfor%}
+                        {%if user.is_authenticated %}
+                        <li><a href="/add_department/" onclick='overlay()'>ADD DEPARTMENT</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </ul>
+            <ul class="nav navbar-nav">
+
+                <div class="dropdown">
+                    <button class="button5 button btn btn-primary dropdown-toggle" style="background-color:Black;"
+                            type="button" data-toggle="dropdown">Contacts <i class="fa fa-address-book" style="font-size:24px;"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/all_contacts/" onclick='overlay()'>ALL CONTACTS</a></li>
+                        {% for c in contacts%}
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">{{c.Name}} <span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="/contacts/{{c.id}}/" >
+                                            {{c.Name}}'s Contact
+                                        </a>
+                                    </li>
+                                    {%if user.is_authenticated %}
+                                    <li>
+                                        <a tabindex="-1" href="/update_contact/{{c.id}}/">
+                                            Update {{c.Name}}'s Contact
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="/delete_contact/{{c.id}}/">
+                                            Delete {{c.Name}}'s Contact
+                                        </a>
+                                    </li>
+                                    {%endif%}
+                                </ul>
+                        </li>
+                        {%endfor%}
+                        {%if user.is_authenticated %}
+                        <li><a href="/add_contact/" onclick='overlay()'>ADD CONTACT</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </ul>
+            {%for i in nav_bar %}
+            <ul class="nav navbar-nav">
+
+                <div class="dropdown">
+                    <button class="button5 button btn btn-primary dropdown-toggle" style="background-color:Black;"
+                            type="button" data-toggle="dropdown">{{i.name}} <i class="fa fa-podcast" style="font-size:24px;"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for c in nav%}
+                        {% if c.nav_bar == i %}
+                        <li class="dropdown-submenu">
+                            <a class="test" tabindex="-1" href="#">{{c.name}} <span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a tabindex="-1" href="{{c.links}}" >
+                                            {{c.name}}'s Website
+                                        </a>
+                                    </li>
+                                    {%if user.is_authenticated %}
+                                    <li>
+                                        <a tabindex="-1" href="/update_nav/{{c.id}}/">
+                                            Update {{c.name}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a tabindex="-1" href="/delete_nav/{{c.id}}/">
+                                            Delete {{c.name}}
+                                        </a>
+                                    </li>
+                                    {%endif%}
+                                </ul>
+                        </li>
+                        {%endif%}
+                        {%endfor%}
+                        {%if user.is_authenticated %}
+                        <li><a href="/add_nav/{{i.id}}" onclick='overlay()'>ADD LINKS</a></li>
+                        <li><a href="/delete_navigation/{{i.id}}" onclick='overlay()'>DELETE THIS BAR</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </ul>
+            {%endfor%}
+            {%if user.is_authenticated %}
+            <a href="/add_navigation/" class="button button5 btn btn-primary"><i class="fa fa-plus" style="font-size:24px;"></i></a>
+            {%endif%}
+        </div>
+
+    </div>
+    </div>
+
+</nav>
+<p></p>
+<p>
+
+</p>
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <!---div class="col-sm-12 col-md-4 col-xs-12 col-lg-4">
+
+        </div--->
+        <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12">
+            <div id="overlay">
+                <div class="{{ dept_visible }}" >
+                    <p>{%if booli %}
+                            <form action="" method="post">
+                                <h2>{{text}} {{object.Dept_ID}}</h2>
+                                <a href="/all_images/" class="close button4">&times;</a>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="button button4" >{{button}} {{object.Dept_ID}}</button>
+                            </form>
+                        {%elif boolj%}
+
+                            <a href="/all_images/" class="close button4">&times;</a>
+                            {% for article in object_list %}
+
+                                    <p>Message: {{article.id}}</p>
+                                    <p>Email ID : {{ article.email}} </p>
+                                    <p>Phone_Number: {{article.phone_number}}</p>
+                                    <p>Message: {{article.Message}}</p>
+                                 _________________________________________________
+                                {% empty %}
+                                    <p>Nothing yet.</p>
+                                {% endfor %}
+                        {%elif boolc%}
+                            <a href="/all_images/" class="close button4">&times;</a>
+                            {% for article in object_list %}
+                                    <p>Name: {{article.Name}} </p>
+                                    <p>Designation: {{article.designation}} </p>
+                                    <p>Email ID : {{ article.email_id}} </p>
+                                    <p>Phone_Number: {{article.phone_number}}</p>
+                                 _________________________________________________
+                                {% empty %}
+                                    <p>Nothing yet.</p>
+                                {%endfor%}
+                        {%elif boolimg %}
+                            <form action="" enctype="multipart/form-data" method="post">
+                                <h2>{{text}} {{object.Dept_ID}}</h2>
+                                <a href="/all_images/" class="close button4">&times;</a>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="button button4" >{{button}} {{object.Dept_ID}}</button>
+                            </form>
+                        {%elif boolshow%}
+                            <a href="/all_images/" class="close button4">&times;</a>
+                            {% for article in object_list %}
+                                    <p>Title: {{article.title}} </p>
+                                    <img  src="{{article.photo.url}}" alt="{{i.description}}" style="width:100%;">
+                                    <p>Description: {{article.description}}</p>
+                                {% empty %}
+                                    <p>Nothing yet.</p>
+                                {%endfor%}
+                        {%endif%}
+                    </p>
+                 </div>
+            </div>
+
+        </div>
+          {% if messages %}
+        <div class ="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+
+        </div>
+        <div class ="col-sm-12 col-xs-12 col-md-4 col-lg-4">
+        </div>
+        <div class ="col-sm-12 col-xs-12 col-md-2 col-lg-2">
+        </div>
+
+        <div class="col-sm-12 col-xs-12 col-md-2 col-lg-2" id =deletesuccess style="background:yellow;">
+            <ul class="messages">
+                {% for message in messages %}
+                <h5 {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}
+                </h5>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <h2 style="color:#130d6a;" align="center">IMAGE GALLERY</h2>
+        <h2 style="color:#130d6a;" align="center">IIIT Allahabad</h2>
+        <p align="center"> An Institute Of National Importance </p>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 ">
+        <marquee behavior="alternate" direction="up" width="100%">
+            <!---scrollamount controls the spped--->
+	        <marquee direction="right" behavior="alternate" scrollamount="1" onmousedown="this.stop();" onmouseup="this.start();">
+                {%if user.is_authenticated %}
+                    <a href="/add_tobar/" style="font-size:15px" class="button button5 btn btn-primary">ADD <i class="fa fa-plus"></i></a>
+                {%endif%}
+                {% for document in movebar %}
+                        &nbsp;&nbsp;
+                        <a href="{{ document.link }}">| {{ document.name }}</a>
+                        {% if user.is_authenticated %}
+                        <a href="/update_bar/{{document.id}}/"><i class="fa fa-plus"></i></a>
+                        <a href="/delete_bar/{{document.id}}/"><i class="fa fa-times"></i></a>
+                        &nbsp;&nbsp;
+                    {%endif%}
+
+                {% endfor %}
+            </marquee>
+        </marquee>
+    </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 rounded">
+        <h1><i class="fa fa-camera-retro" style="font-size:36px"></i> IMAGE GALLERY {%if user.is_authenticated %}
+            <a href="/upload_photo/" style="font-size:15px" class="button button5 btn btn-primary"><i class="fa fa-upload"></i></a>
+        {%endif%}
+        </h1>
+    <div class = "row" style="background-color:#C0B7B7">
+        {%for i in image %}
+        <div class ="col-sm-12 col-xs-12 col-md-6 col-lg-6" style="">
+            <h2>{{i.title}} </h2>
+            {% if user.is_authenticated %}
+            <h3>
+                <a href="/update_photo/{{i.id}}/" class="button5"><i class="fa fa-plus"></i></a>
+                <a href="/delete_photo/{{i.id}}/" class="button5"><i class="fa fa-times"></i></a>
+            </h3>
+            {%endif%}
+            <a href="{{i.photo.url}}">
+                <img style="width:100%;height:300px;" src="{{i.photo.url}}" alt="Events" >
+            </a>
+            <h3 style="color:green">{{i.description}}</h3>
+        </div>
+        {%endfor%}
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 rounded" style="background:#C707">
+        <footer>
+            <p> &ensp; &copy; Copyright 2018 IIIT ALLAHABAD</p>
+        </footer>
+    </div>
+</div>
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+</script>
+</body>
+</html>
